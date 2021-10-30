@@ -10,5 +10,5 @@ class UserForm(UserCreationForm):
 class NewPost(forms.ModelForm):
     class Meta():
         model = Post
-        fields = '__all__'
+        exclude = ('post_owner',)
         

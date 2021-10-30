@@ -4,6 +4,7 @@ from .forms import UserForm, NewPost
 from .models import User, Post
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 def navbar(request):
     return render(request, 'blogApp/navbar.html')
@@ -18,26 +19,25 @@ def home_page(request):
 def about_page(request):
     return render(request, 'blogApp/about.html')
 
+@login_required()
 def create_post(request):
     form = NewPost()
     if request.method == "POST":
         form = NewPost(request.POST, request.FILES)
-        if form.is_valid(): 
-            # post_owner = request.user.id
-            # form.post_owner = request.user.id
-            form.save()
-            # if form['status']  == 'Draft':
-            #     messages.success(request, 'saved as a draft')
-            # else:
-            #     form.save()
-            #     messages.success(request, 'Your Post has been published👍')
-            messages.success(request, 'Your Post has been saved!')
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.post_owner = request.user
+            post.save()
+            if post.status  == 'Draft':
+                messages.success(request, 'saved as a draft')
+            else:
+                messages.success(request, 'Your Post has been published👍')
             return redirect('home')
         else:
             messages.error(request, 'Invalid Form! Please try again!')
     context = {
         'form' : form
-    }    
+    }
     return render(request, 'blogApp/post_create.html', context)
 
 def detail_post(request, id):
