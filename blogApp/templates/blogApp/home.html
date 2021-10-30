@@ -2,13 +2,13 @@
 <div class="mx-5 my-5 d-flex flex-wrap justify-content-center">
     {% for post in posts %}
     {% if post.status == "Published" %} 
-  <div class="card bg-light py-1 mx-3 mb-5" style="width: 18rem">
-    <div style="width: 100%; text-align: center;">
+  <div class="card bg-light py-1 mx-3 mb-5" style="width: 18rem;">
+    <div style="width: 100%; text-align: center; height: 170px; overflow: hidden;">
         <img style="max-width: 10rem; padding: 10px; " src="{{post.image.url}}" alt="" />
     </div>
     <div class="card-body">
       <h5 class="card-title" style="text-align: center;"><a href="{% url 'detail' post.id %}" style="text-decoration: none">{{post.title | title}}</a></h5>
-      <p class="card-text" style="text-align: justify;">{{ post.content | truncatewords:10 | capfirst}}</p>
+      <p class="card-text" style="text-align: justify; height: 60px;">{{ post.content | truncatewords:10 | capfirst}}</p>
       <p class="card-text"><b>Posted:</b> {{post.last_updated | date:'M d, Y'}}</p>
     </div>
     <div class="d-flex justify-content-center mx-3">
