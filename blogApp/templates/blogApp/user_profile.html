@@ -1,0 +1,42 @@
+{% extends 'blogApp/navbar.html' %}
+
+{% block container %}
+<div class="d-flex justify-content-evenly mt-5">
+    <div class="d-flex flex-column justify-content-center">
+        {% if request.user.is_authenticated %}
+        <h3 style="text-align: center;">User Profile</h3>
+        <img src="{{user_info.user_image.url}}" alt="image" style="width: 300px;"/>
+        <div><b>Name:</b> {{user_info.name | capfirst}}</div>
+        <div><b>Email:</b> {{user_info.email}}</div>
+        <div class="detailbuttons d-flex justify-content-center my-4">
+            <a href="{% url 'update' user_info.id %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px;" role="button" aria-pressed="true"><i class="fas fa-edit"></i> Edit</a>
+        </div>
+    </div>
+    <div  style="width: fit-content; ">
+        <h3 style="text-align: center;">Your Posts</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for post in posts  %}
+                {% if post.post_owner.id == request.user.id %}   
+                <tr>
+                  <td><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
+                  <td>{{post.publish_date | date:'M d, Y'}}</td>
+                  <td>{{post.status}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+              </tbody>
+            </table>
+    </div>
+    {% else %}
+    <h3>No user logged in</h3>
+</div>
+{% endif %} {% endblock container %}
+    

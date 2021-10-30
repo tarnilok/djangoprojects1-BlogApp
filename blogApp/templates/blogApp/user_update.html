@@ -1,0 +1,21 @@
+{% extends 'blogApp/navbar.html' %}
+{% block container %} 
+{% load crispy_forms_tags %}
+
+<div class="row mt-4">
+  <div class="col-md-6 offset-md-3">
+    <h2>Update Form</h2>
+    {% if user_info.id != request.user.id %}
+    <h3>You are not this User❗</h3>
+    {% else %}
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{form | crispy}}
+      <div class="detailbuttons d-flex justify-content-center my-4">
+        <button class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px;"  type="submit" aria-pressed="true">Update</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px;" role="button" aria-pressed="true">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %} {% endblock container %}
+

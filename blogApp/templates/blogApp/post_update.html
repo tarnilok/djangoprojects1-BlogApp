@@ -1,0 +1,21 @@
+{% extends 'blogApp/navbar.html' %} 
+{% block container %} 
+{% load crispy_forms_tags %}
+
+<div class="d-flex justify-content-center" style="width: 100%;">
+  <div class="d-flex flex-column justify-content-center mt-4" style="width: fit-content; min-width: 600px;">
+    <h2 style="text-align: center;">Update Form</h2>
+    {% if request.user.is_authenticated %}
+    {% if post.post_owner.id != request.user.id %}
+    <h3>You are not the owner of this Post❗</h3>
+    {% else %}
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{form | crispy}}
+      <div class="detailbuttons d-flex justify-content-center my-3">
+        <button class="btn btn-secondary btn-md active btn-block mx-5" style="width: 100px;"  type="submit" aria-pressed="true">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %} {% endif %}{% endblock container %}
+

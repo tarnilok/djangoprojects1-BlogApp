@@ -1,0 +1,21 @@
+{% extends 'blogApp/navbar.html' %} {% block container %} {% load crispy_forms_tags %}
+
+<div class="d-flex justify-content-center" style="width: 100%">
+  <div class="mt-4">
+    <h2 style="text-align: center;">Registration Form</h2><hr>
+    {% if request.user.is_authenticated %}
+    <h3>Thanks for registering</h3>
+    {% else %}
+
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{register_form | crispy}}
+      <div class="detailbuttons d-flex justify-content-center my-3">
+        <button class="btn btn-secondary btn-md  btn-block mx-5" style="width: 100px" type="submit" aria-pressed="true">Register</button>
+      </div>
+    </form><hr>
+    <div class="d-flex" style="font-size: small;">
+      <p style="margin-right: 10px;">Already have an account?</p>
+    <a href="{% url 'login' %}">Sign In</a>
+  </div>
+</div>
+{% endif %} {% endblock container %}

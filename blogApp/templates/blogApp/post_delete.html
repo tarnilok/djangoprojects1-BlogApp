@@ -1,0 +1,20 @@
+{% extends 'blogApp/navbar.html' %} {% block container %}
+<div class="d-flex justify-content-center" style="width: 100%;">
+<div class="d-flex flex-column justify-content-center mt-5" style="width: fit-content;">
+  <h3 style="text-align: center;">Deleting Post</h3><hr>
+  {% if post.post_owner.id == request.user.id %}
+  <div class="d-flex flex-column justify-content-center">
+    <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} Confirm to delete: <b>{{post.title | title}} </b>
+      <br/>
+      <div class="detailbuttons d-flex justify-content-center my-4">
+        <button class="btn btn-secondary btn-md active btn-block mx-5" style="width: 100px;"  type="submit" aria-pressed="true">Delete</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 100px;" role="button" aria-pressed="true">Cancel</a>
+      </div>
+    </form>
+    {% else %}
+    <h3>You are not the owner of this Post❗</h3>
+  </div>
+  {% endif %} {% endblock container %}
+</div>
+</div>
