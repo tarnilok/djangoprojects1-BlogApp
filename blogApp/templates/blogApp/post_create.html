@@ -2,8 +2,8 @@
 {% block container %} 
 {% load crispy_forms_tags %}
 
-<div class="row mt-4">
-  <div class="col-md-6 offset-md-3">
+<div class="d-flex justify-content-center mt-4">
+  <div style="width: fit-content; min-width: 600px" >
     <h2 style="text-align: center;">Blog Post</h2><hr>
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{form | crispy}}

@@ -2,8 +2,8 @@
 {% block container %} 
 {% load crispy_forms_tags %}
 
-<div class="d-flex justify-content-center" style="width: 100%;">
-  <div class="d-flex flex-column justify-content-center mt-4" style="width: fit-content; min-width: 600px;">
+<div class="d-flex justify-content-center mt-4" style="width: 100%;">
+  <div class="d-flex flex-column justify-content-center" style="width: fit-content; min-width: 600px;">
     <h2 style="text-align: center;">Update Form</h2>
     {% if request.user.is_authenticated %}
     {% if post.post_owner.id != request.user.id %}

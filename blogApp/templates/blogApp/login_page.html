@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block container %}
-<div class="d-flex justify-content-center" style="width: 100%">
-  <div class="mt-4" style="width: fit-content; min-width: 400px">
+<div class="d-flex justify-content-center mt-4">
+  <div style="width: fit-content; min-width: 400px">
     {% if request.user.is_authenticated %}
     <h3>You are already logged in</h3>
     {% else %}
@@ -12,7 +12,7 @@
         <button class="btn btn-secondary btn-md btn-block mx-5" style="width: 100px" type="submit" aria-pressed="true">Login</button>
       </div>
     </form>
-    <hr />
+    <hr/>
     <div class="d-flex" style="font-size: small">
       <p style="margin-right: 10px">Need an account?</p>
       <a href="{% url 'register' %}">Sign Up Now</a>

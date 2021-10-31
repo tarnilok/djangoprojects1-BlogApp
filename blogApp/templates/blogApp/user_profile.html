@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block container %}
-<div class="d-flex justify-content-evenly mt-5">
-    <div class="d-flex flex-column justify-content-center">
+<div class="d-flex justify-content-evenly">
+    <div class="d-flex flex-column justify-content-center mt-5">
         {% if request.user.is_authenticated %}
         <h3 style="text-align: center;">User Profile</h3>
         <img src="{{user_info.user_image.url}}" alt="image" style="width: 300px;"/>
@@ -12,7 +12,7 @@
             <a href="{% url 'update' user_info.id %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px;" role="button" aria-pressed="true"><i class="fas fa-edit"></i> Edit</a>
         </div>
     </div>
-    <div  style="width: fit-content; ">
+    <div class="mt-5" style="width: fit-content;">
         <h3 style="text-align: center;">Your Posts</h3>
         <table class="table">
             <thead>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 {% for post in posts  %}
-                {% if post.post_owner.id == request.user.id %}   
+                {% if post.post_owner.id == request.user.id %}  
                 <tr>
                   <td><a href="{% url 'detail' post.id %}">{{post.title}}</a></td>
                   <td>{{post.publish_date | date:'M d, Y'}}</td>

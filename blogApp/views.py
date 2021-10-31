@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from .forms import UserForm, NewPost
-from .models import User, Post, Likes
+from .models import User, Post, Likes, Comments
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -13,8 +13,22 @@ def navbar(request):
 
 def home_page(request):
     posts = get_list_or_404(Post)
+    likes = Likes.objects.all()
+    comments = Comments.objects.all()
+    like_counter = {}
+    comment_counter = {}
+    for i in posts:
+        counter = 0
+        for j in likes:
+            if i.id == j.likes_posts.id:
+                counter += 1
+            like_counter[f'{i.id}'] = counter
+                
+            
+    
     context = {
-        'posts' : posts
+        'posts' : posts,
+        'like_counter' : like_counter
     }
     return render(request, 'blogApp/home.html', context)
 
@@ -48,11 +62,6 @@ def detail_post(request, id):
         'post' : post
     }
     return render(request, 'blogApp/post_detail.html', context)
-
-def post_like(request, pk):
-    post = get_object_or_404(Likes, id=request.POST.get('post_like'))
-    post.add(request.user)
-    return HttpResponseRedirect(reverse('detail', args=[str(pk)]))
 
 def edit_post(request, id):
     post = get_object_or_404(Post, id=id)

@@ -2,9 +2,9 @@
 {% block container %} 
 {% load crispy_forms_tags %}
 
-<div class="row mt-4">
-  <div class="col-md-6 offset-md-3">
-    <h2>Update Form</h2>
+<div class="d-flex justify-content-evenly mt-4">
+  <div class="d-flex flex-column justify-content-center">
+    <h2 style="text-align: center;">Update Form</h2>
     {% if user_info.id != request.user.id %}
     <h3>You are not this User❗</h3>
     {% else %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block container %} {% load crispy_forms_tags %}
 
-<div class="d-flex justify-content-center" style="width: 100%">
-  <div class="mt-4">
+<div class="d-flex mt-4 justify-content-center">
+  <div>
     <h2 style="text-align: center;">Registration Form</h2><hr>
     {% if request.user.is_authenticated %}
     <h3>Thanks for registering</h3>
