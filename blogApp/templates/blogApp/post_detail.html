@@ -1,13 +1,14 @@
 {% extends 'base.html' %} {% block container %}
 <div class="my-5 mx-5 d-flex justify-content-center">
-  <div class="card bg-light py-1" style="width: fit-content; max-width: 750px; min-width: 500px">
+  <div class="card bg-light py-1" style="width: fit-content; max-width: 1000px; min-width: 500px">
     <div style="width: 100%; text-align: center">
       <img style="max-width: 15rem; padding: 10px" src="{{post.image.url}}" alt="" />
     </div>
     <div class="card-body py-1">
       <h5 class="card-title" style="text-align: center"><b>{{post.title | title}}</b></h5>
       <p class="card-text" style="text-align: justify">{{post.content | capfirst}}</p>
-      <p class="card-text"><b>Posted:</b> {{ post.last_updated | date:'M d, Y'}}</p>
+      <p class="card-text mb-1"><b>Posted:</b> {{ post.last_updated | date:'M d, Y'}}</p>
+      <p class="card-text mb-1"><b>Posted by:</b> {{ post.post_owner.name | title }}</p>
     </div>
     {% if request.user.is_authenticated %}
     <div class="d-flex mx-3">

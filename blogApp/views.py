@@ -13,22 +13,8 @@ def navbar(request):
 
 def home_page(request):
     posts = get_list_or_404(Post)
-    likes = Likes.objects.all()
-    comments = Comments.objects.all()
-    like_counter = {}
-    comment_counter = {}
-    for i in posts:
-        counter = 0
-        for j in likes:
-            if i.id == j.likes_posts.id:
-                counter += 1
-            like_counter[f'{i.id}'] = counter
-                
-            
-    
     context = {
-        'posts' : posts,
-        'like_counter' : like_counter
+        'posts' : posts
     }
     return render(request, 'blogApp/home.html', context)
 
