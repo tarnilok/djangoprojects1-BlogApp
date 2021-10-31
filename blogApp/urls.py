@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import navbar, user_register, user_login, user_logout, about_page, create_post, user_profile, home_page, user_update, detail_post, delete_post, edit_post, post_comments
+from .views import navbar, user_register, user_login, user_logout, about_page, create_post, user_profile, home_page, user_update, detail_post, delete_post, edit_post, post_comments, post_like
 
 urlpatterns = [
     path('', home_page, name='home'),
@@ -14,4 +14,5 @@ urlpatterns = [
     path('delete/<int:id>', delete_post, name='delete'),
     path('postedit/<int:id>', edit_post, name='postedit'),
     path('comments/', post_comments, name='comments'),
+    path('like/', post_like, name='like'),
 ]

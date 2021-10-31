@@ -1,4 +1,4 @@
-{% extends 'blogApp/navbar.html' %} {% load crispy_forms_tags %} {% block container %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block container %}
 <div class="d-flex justify-content-center" style="width: 100%">
   <div class="mt-4" style="width: fit-content; min-width: 400px">
     {% if request.user.is_authenticated %}

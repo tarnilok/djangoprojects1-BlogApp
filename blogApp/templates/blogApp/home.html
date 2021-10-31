@@ -1,8 +1,9 @@
-{% extends 'blogApp/navbar.html' %} {% block container %} 
-<div class="mx-5 my-5 d-flex flex-wrap justify-content-center">
+{% extends 'base.html' %}
+{% block container %} 
+<div class="mx-5 pb-5 d-flex flex-wrap justify-content-center">
     {% for post in posts %}
     {% if post.status == "Published" %} 
-  <div class="card bg-light py-1 mx-3 mb-5" style="width: 18rem;">
+  <div class="card bg-light py-1 mx-3 mt-5" style="width: 18rem;" >
     <div style="width: 100%; text-align: center; height: 170px; overflow: hidden;">
         <img style="max-width: 10rem; padding: 10px; " src="{{post.image.url}}" alt="" />
     </div>

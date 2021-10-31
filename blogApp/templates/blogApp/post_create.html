@@ -1,4 +1,4 @@
-{% extends 'blogApp/navbar.html' %} 
+{% extends 'base.html' %} 
 {% block container %} 
 {% load crispy_forms_tags %}
 
@@ -7,7 +7,7 @@
     <h2 style="text-align: center;">Blog Post</h2><hr>
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token %} {{form | crispy}}
-      <div class="detailbuttons d-flex justify-content-center my-4">
+      <div class="detailbuttons d-flex justify-content-center my-3">
         <button class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px;"  type="submit" aria-pressed="true">Post</button>
       </div>
     </form>

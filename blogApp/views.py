@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.contrib import messages
 from .forms import UserForm, NewPost
-from .models import User, Post
+from .models import User, Post, Likes
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 def navbar(request):
     return render(request, 'blogApp/navbar.html')
@@ -46,6 +48,11 @@ def detail_post(request, id):
         'post' : post
     }
     return render(request, 'blogApp/post_detail.html', context)
+
+def post_like(request, pk):
+    post = get_object_or_404(Likes, id=request.POST.get('post_like'))
+    post.add(request.user)
+    return HttpResponseRedirect(reverse('detail', args=[str(pk)]))
 
 def edit_post(request, id):
     post = get_object_or_404(Post, id=id)

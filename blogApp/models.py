@@ -87,6 +87,10 @@ class Likes(models.Model):
     
     def __str__ (self):
         return self.likes_posts
+        # return self.like_set.all().count()
+    
+    def total_likes(self):
+        return self.like_set.all().count()
     
     class Meta:
         ordering = ["likes_posts"]
