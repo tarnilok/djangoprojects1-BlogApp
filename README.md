@@ -58,6 +58,6 @@
     sqlparse==0.4.2
 
 ### Heroku link
-👉 
+👉 https://dj-pr1-blogapp.herokuapp.com/
 
 
