@@ -5,8 +5,7 @@ from .models import User, Post, Likes, Comments
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+
 
 def navbar(request):
     return render(request, 'blogApp/navbar.html')
