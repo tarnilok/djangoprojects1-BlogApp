@@ -41,8 +41,8 @@ def create_post(request):
     }
     return render(request, 'blogApp/post_create.html', context)
 
-def detail_post(request, id):
-    post = get_object_or_404(Post, id=id)
+def detail_post(request, slug):
+    post = get_object_or_404(Post, title=slug)
     context = {
         'post' : post
     }

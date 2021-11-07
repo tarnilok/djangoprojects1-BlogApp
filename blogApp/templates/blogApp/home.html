@@ -8,7 +8,7 @@
         <img style="max-width: 10rem; padding: 10px; " src="{{post.image.url}}" alt="" />
     </div>
     <div class="card-body">
-      <h5 class="card-title" style="text-align: center;"><a href="{% url 'detail' post.id %}" style="text-decoration: none">{{post.title | title}}</a></h5>
+      <h5 class="card-title" style="text-align: center;"><a href="{% url 'detail' post.title %}" style="text-decoration: none">{{post.title | title}}</a></h5>
       <p class="card-text" style="text-align: justify; height: 60px;">{{ post.content | truncatewords:10 | capfirst}}</p>
       <p class="card-text"><b>Posted:</b> {{post.last_updated | date:'M d, Y'}}</p>
     </div>

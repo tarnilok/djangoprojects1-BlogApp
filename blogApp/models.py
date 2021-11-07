@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
 from django.db.models.deletion import CASCADE
+from django.template.defaultfilters import slugify
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
@@ -51,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         db_table = "Users" 
 
 class Post(models.Model):
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=30, unique=True)
     content = models.TextField()
     image = models.ImageField(upload_to='postimages/')
     publish_date = models.DateTimeField(auto_now_add=True)
@@ -72,6 +73,7 @@ class Post(models.Model):
     User.username = None
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+    
         
     def __str__ (self):
         return self.title
