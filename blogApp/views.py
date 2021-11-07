@@ -48,8 +48,8 @@ def detail_post(request, slug):
     }
     return render(request, 'blogApp/post_detail.html', context)
 
-def edit_post(request, id):
-    post = get_object_or_404(Post, id=id)
+def edit_post(request, slug):
+    post = get_object_or_404(Post, title=slug)
     form = NewPost(instance=post)
     if request.method == "POST":
         form = NewPost(request.POST, request.FILES, instance=post)
@@ -65,8 +65,8 @@ def edit_post(request, id):
     }
     return render(request, 'blogApp/post_update.html', context)
 
-def delete_post(request, id):
-    post = get_object_or_404(Post, id=id)
+def delete_post(request, slug):
+    post = get_object_or_404(Post, title=slug)
     if request.method == "POST":
         post.delete()
         messages.success(request, 'The post has been deleted!')
@@ -79,17 +79,17 @@ def delete_post(request, id):
 def post_comments(request):
     return render(request, 'blogApp/post_comments.html')
     
-def user_profile(request, id):
+def user_profile(request, slug):
     posts = get_list_or_404(Post)
-    user_info = get_object_or_404(User, id=id)
+    user_info = get_object_or_404(User, email=slug)
     context = {
         'user_info' : user_info,
         'posts' : posts
     }
     return render(request, 'blogApp/user_profile.html', context)
 
-def user_update(request, id):
-    user_info = get_object_or_404(User, id=id)
+def user_update(request, slug):
+    user_info = get_object_or_404(User, email=slug)
     form = UserForm(instance=user_info)
     if request.method == "POST":
         form = UserForm(request.POST, request.FILES, instance=user_info)

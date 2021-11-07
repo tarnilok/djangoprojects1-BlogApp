@@ -22,8 +22,8 @@
     {% endif %}
     {% if post.post_owner.id == request.user.id %}
     <div class="detailbuttons d-flex justify-content-center my-4">
-      <a href="{% url 'postedit' post.id %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px" role="button" aria-pressed="true"><i class="fas fa-edit"></i> Edit</a>
-      <a href="{% url 'delete' post.id %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px" role="button" aria-pressed="true"><i class="fas fa-trash"></i> Delete</a>
+      <a href="{% url 'postedit' post.title %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px" role="button" aria-pressed="true"><i class="fas fa-edit"></i> Edit</a>
+      <a href="{% url 'delete' post.title %}" class="btn btn-secondary btn-md active btn-block mx-5" style="width: 200px" role="button" aria-pressed="true"><i class="fas fa-trash"></i> Delete</a>
     </div>
     {% endif %}
   </div>
